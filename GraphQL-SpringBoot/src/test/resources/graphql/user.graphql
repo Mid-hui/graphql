@@ -1,0 +1,8 @@
+query{
+  user(id:1){id,name,age}
+  userAll{id,name,age}
+  usersPaging(page:3,pageSize:3){id,name,age}
+  userLikeByName(name:"六"){id,name,age}
+}
+
+

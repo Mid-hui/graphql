@@ -1,0 +1,45 @@
+schema{ 
+	query: Query  #Query 表示查询的入口，专门展示数据的
+	mutation: Mutation #mutation 表示增刪改的入口
+}
+
+directive @auth(role : String!) on FIELD_DEFINITION 
+
+type Query {
+	employeeQuery(id:Int!):Employee
+	
+	#根据id查询用户
+    user(user:Userr):User 
+    
+    users(user:Userr):[User]  
+}
+
+type Mutation {
+	#删除
+	user(id:Int!) :User
+	#添加2
+	createUser(user:Userr):User  
+	 #修改
+    modifyUser(id:Int!,name:String,age:Int):User
+}
+
+input Userr{
+    id: Int   
+    name: String
+    age: Int
+    page: Int
+    pageSize: Int
+}
+
+type User {   #定义对象
+	id: Int! 	
+	name:String! @auth(role : "manager") 
+	age:Int! @auth(role : "manager")
+}
+
+type Employee { 
+	id: Int! 
+	name:String! 
+	salary:Float! 
+}
+

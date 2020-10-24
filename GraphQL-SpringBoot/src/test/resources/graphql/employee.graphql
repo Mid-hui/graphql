@@ -1,0 +1,5 @@
+query{
+  employeeQuery(id:1){id,name,salary}
+}
+
+

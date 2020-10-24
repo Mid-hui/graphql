@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cy.graphql.mapper.GraphqlMapper">
+	<select id="findUser" resultType="com.cy.graphql.vo.User" >
+		select * from user where id =
+		#{id}
+	</select>
+
+	<select id="UserLikeByPage" resultType="com.cy.graphql.vo.User" parameterType="map">
+		select * from user
+		<where>
+			<if test="name!=null and name!=''">
+				 name like concat("%",#{name},"%")
+			</if>
+			<if test="id!=null and id!=''">
+				 and id =#{id}
+			</if>
+			<!-- 添加任何条件的查询只需要在这里判断即可 -->
+		</where>
+		limit #{page},#{pageSize}
+	</select>
+</mapper>
